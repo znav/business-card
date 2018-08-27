@@ -1,0 +1,312 @@
+/* BEST PRACTICES */
+
+/* Sort alphabetically */
+
+/* Avoid the shorthand notation */
+
+/* Avoid z-index when possible 
+    All positioned elements ( absolute , fixed , or relative ) can have a z-index value to stack them
+    relatively to each other.
+    But elements are already stacked based on their location within the HTML code.
+    Because .wallpaper and .content are siblings, the second one .content will appear above (only if it's
+    positioned too).
+    And child elements will appear above their parent.
+    It's better to place them as you want in your HTML, otherwise you'll have to keep track of all z-index values
+    throughout your CSS. */
+
+/* In media queries, don’t undo, just do
+    With mobile-first approaches, it's easy to make a layout work well on narrow screens, and then "undo" most of
+    it on desktop. But that's tricky because you have to keep track of what has been done outside of media queries,
+    and reset those values inside the desktop media query. You also end up writing a lot of CSS just to reset
+    values, and you can end up leaving CSS like margin-bottom: 0 you are not sure what.
+    The margin-bottom set for the .side element should only appear on mobile.
+    Instead of applying a margin by default on all screens, and removing it on desktop, we only apply it on mobile. */
+
+/* Set line-height first, margin/padding second
+    The line-height value should be set for readability purposes only.
+*/
+
+/* Base */
+
+@font-face {
+    font-family: 'social-icons';
+    src: url('../fonts/social-icons.eot?31618365');
+    src: url('../fonts/social-icons.eot?31618365#iefix') format('embedded-opentype'), url('../fonts/social-icons.woff?31618365') format('woff'), url('../fonts/social-icons.ttf?31618365') format('truetype'), url('../fonts/social-icons.svg?31618365#social-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.demo-icon {
+    font-family: "social-icons";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+    /* You can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+html {
+    background-color: #5f45bb;
+    background-image: linear-gradient(to bottom right, #180cac, #d054e4);
+    color: #fff;
+    /* The font-family property takes a list of possible families. If the Quicksand font is not available, the browser
+will use the fallback font provided: sans-serif . This usually means Arial or Helvetica on Windows
+machines, San Francisco on Mac OS, and Ubuntu on Linux machines. */
+    font-family: "Quicksand", sans-serif;
+    font-size: 16px;
+    /* Readability */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    /* The min-height: 100vh ensures the page to be at least as tall as 100% of the viewport height ( vh ). */
+    min-height: 100vh;
+    min-width: 300px;
+    overflow-x: hidden;
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    /* it will pick up the color set by html before: color: #fff */
+    color: currentColor;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.content {
+    display: flex;
+    /* The position: relative allows .content to appear above .wallpaper */
+    position: relative;
+    /* inherit? */
+    min-height: 100vh;
+}
+
+.side {
+    max-height: 20rem;
+    max-width: 20rem;
+}
+
+.about {
+    /* 26 x (font-size)16px = 676px */
+    max-width: 26rem;
+}
+
+/* Shared. Here, different selectors will share the same set of rules. */
+
+.wallpaper,
+.picture-shadow,
+.picture-image {
+    display: block;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.job,
+.button {
+    font-family: "Montserrat", "Quicksand", sans-serif;
+    letter-spacing: 0.3em;
+    text-transform: uppercase
+}
+
+.button,
+.social a {
+    transform-origin: center;
+    transition-duration: 200ms;
+}
+
+/* Specific. Section where we will style each element individually. */
+
+.wallpaper {
+    background-image: url("../images/barcelona.jpg");
+    background-position: center;
+    background-size: cover;
+    opacity: 0.2;
+    position: fixed;
+}
+
+.picture {
+    /* The padding-top: 100% is a technique that makes the .picture as high as it is wide making it square
+at all times. */
+    padding-top: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.picture-shadow {
+    border-radius: 941006px;
+    background-image: radial-gradient(#000 0%, rgba(0, 0, 0, 0) 70%);
+    position: absolute;
+    top: 10%;
+}
+
+.picture-image {
+    border-radius: 290486px;
+    position: absolute;
+}
+
+.name {
+    font-size: 2.25rem;
+    line-height: 1.125;
+    margin-bottom: 0.5rem;
+}
+
+.job {
+    color: #ffe479;
+    font-size: 0.75rem;
+}
+
+.hr {
+    background-color: #ff470f;
+    border: none;
+    content: "";
+    height: 1px;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    transform-origin: center left;
+    width: 4rem;
+}
+
+.description {
+    font-size: 1.5rem;
+}
+
+.contact {
+    /* inline makes sure the width is equal to its content (the button)
+block makes sure surrounding elements will appear above and below */
+    display: inline-block;
+    margin-top: 1.5rem;
+    /* And vertical-align: top ensures the element to only use the vertical space required, and keeps the
+spacing tight. */
+    vertical-align: top;
+}
+
+.button {
+    background-color: #fff;
+    border-radius: 290486px;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    color: #9013fe;
+    display: inline-block;
+    /* you'll notice that the button
+will resize proportionally. */
+    font-size: 0.875rem;
+    line-height: 1;
+    padding: 1.25em 2em;
+    text-shadow: none;
+    transition-property: box-shadow, transform;
+    user-select: none;
+    vertical-align: top;
+    /* to make sure the text never is displayed on two lines */
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+}
+
+.button:hover {
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
+    transform: scale(1.02) translateY(-4px);
+}
+
+.button:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    transform: scale(0.98) translateY(-2px);
+}
+
+.social {
+    display: flex;
+    margin-top: 1.5rem;
+}
+
+/* 
+If you reload the page repeatedly, you might notice that the layout "jumps" for a split second. That's because
+at first, the icons are not loaded, and the page only displays the text and the images. Then, when the icons
+finally load, the pop up, and cause the page to be redrawn, hence the jump.
+To avoid this jump, we're gonna set a square area of 2rem by 2rem for each <li> list item: */
+
+.social li {
+    height: 2rem;
+    margin-right: 0.5rem;
+    text-align: center;
+    width: 2rem;
+}
+
+.social a {
+    align-items: center;
+    display: flex;
+    font-size: 1.5rem;
+    height: 2rem;
+    justify-content: center;
+    opacity: 0.7;
+    transition-property: opacity, transform;
+    width: 2rem;
+    will-change: opacity, transform;
+}
+
+.social a:hover {
+    opacity: 1;
+    transform: scale(1.25);
+}
+
+.social a:active {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Responsiveness */
+
+@media screen and (max-width: 799px) {
+    .content {
+        /* flex-direction: column makes the layout vertical
+        justify-content: center makes the content centered on the main axis (vertical)
+        align-items: center makes the content centered on the cross axis (horizontal) */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5rem 3rem;
+    }
+    .side {
+        margin-bottom: 3rem;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .content {
+        align-items: center;
+        /* justify-content appears twice because the space-evenly
+value is not available in all browsers, so we use space-around as a reasonable fallback. */
+        justify-content: space-around;
+        justify-content: space-evenly;
+        padding: 4rem;
+    }
+    .side {
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 20rem;
+        margin-left: 4rem;
+        order: 2;
+        width: 20rem;
+    }
+    .about {
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+}
