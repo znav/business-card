@@ -100,7 +100,7 @@ a {
 }
 
 .side {
-    max-height: 20rem;
+    max-height: 23rem;
     max-width: 20rem;
 }
 
@@ -300,7 +300,7 @@ value is not available in all browsers, so we use space-around as a reasonable f
     .side {
         flex-grow: 0;
         flex-shrink: 0;
-        height: 20rem;
+        height: 23rem;
         margin-left: 4rem;
         order: 2;
         width: 20rem;
