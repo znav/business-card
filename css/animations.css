@@ -161,12 +161,15 @@ opacity: 0;
     animation-delay: 400ms;
 }
 
-.picture-image {
-    animation-delay: 500ms;
+.wallpaper {
+animation-name: zoomOut;
+animation-timing-function: ease-out;
 }
-
 .picture-shadow {
-    animation-delay: 500ms;
+animation-name: picShadow;
+}
+.picture-image {
+animation-name: picImage;
 }
 
 .contact {
